@@ -5,7 +5,14 @@ function Word (word){
   this.syllable = 0;
 }
 
-const vowels = "aeiouy";
+Word.prototype.includesVowel = function () {
+  if(this.word.includes('a')) {return true;}
+  if(this.word.includes('e')) {return true;}
+  if(this.word.includes('i')) {return true;}
+  if(this.word.includes('o')) {return true;}
+  if(this.word.includes('u')) {return true;}
+  if(this.word.includes('y')) {return true;}
+};
 
 Word.prototype.countVowels = function () {
   original = this.word.length;
@@ -22,14 +29,36 @@ Word.prototype.countVowels = function () {
   return count;
 };
 
-Word.prototype.methodName = function () {
-  if (this.vowelCount > 1){
+Word.prototype.countSyllables = function () {
+  if (this.vowelCount > 2){
+    for (let i = 0; i < this.word.length; ++i){
+      if(this.word.charAt(i).includesVowel){
+        if(this.word.charAt(i+1).includesVowel){}
+      }
+    }
+  }
+  if (this.vowelCount === 2){
     // if vowel first character
 
     // if consonant first character
 
     // if 2 vowels together
-
+    for (let i = 0; i < this.word.length; ++i){
+      for (let j = 0; j < vowels.length; ++j){
+        if (this.word.charAt(i) === vowels.charAt(j)){
+          for (let j = 0; j < vowels.length; ++j){
+            if(this.word.charAt(i+1) === vowels.charAt(j)){
+              this.syllable +=1;
+              ++i;
+            }
+            else {
+              this.syllable +=2;
+            }
+          }
+        }
+      }
+    }
+    return this.syllable;
     // if 'e' is at end
 
     // if 'ire' at end
@@ -38,6 +67,6 @@ Word.prototype.methodName = function () {
 
   if (this.vowelCount === 1){
     this.syllable += 1;
-    return [this.word];
+    return this.syllable;
   }
 };
