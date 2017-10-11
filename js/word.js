@@ -1,72 +1,53 @@
-function Word (word){
-  this.word = word;
-  this.vowelCount = 0;
-  this.consonantCount = 0;
-  this.syllable = 0;
-}
+export class Word{
 
-Word.prototype.includesVowel = function () {
-  if(this.word.includes('a')) {return true;}
-  if(this.word.includes('e')) {return true;}
-  if(this.word.includes('i')) {return true;}
-  if(this.word.includes('o')) {return true;}
-  if(this.word.includes('u')) {return true;}
-  if(this.word.includes('y')) {return true;}
-};
+  constructor(word){
+    this.word = word;
+    this.vowelCount = 0;
+    this.consonantCount = 0;
+    this.syllable = 0;
+  }
 
-Word.prototype.countVowels = function () {
-  original = this.word.length;
-  let count = 0;
-  for (let i = 0; i < this.word.length; ++i){
-    for (let j = 0; j < vowels.length; ++j){
-      if (this.word.charAt(i) === vowels.charAt(j)){
-        count +=1;
+  includesVowel () {
+    if(this.word.includes('a')) {return true;}
+    if(this.word.includes('e')) {return true;}
+    if(this.word.includes('i')) {return true;}
+    if(this.word.includes('o')) {return true;}
+    if(this.word.includes('u')) {return true;}
+    if(this.word.includes('y')) {return true;}
+  }
+
+  countVowels () {
+    original = this.word.length;
+    let count = 0;
+    for (let i = 0; i < this.word.length; ++i){
+      let letter = word.charAt(i);
+      if (includesVowel(letter)){
+          count +=1;
       }
     }
+    this.vowelCount = count;
+    this.consonantCount = (original - count);
+    return count;
   }
-  this.vowelCount = count;
-  this.consonantCount = (original - count);
-  return count;
-};
 
-Word.prototype.countSyllables = function () {
-  if (this.vowelCount > 2){
-    for (let i = 0; i < this.word.length; ++i){
-      if(this.word.charAt(i).includesVowel){
-        if(this.word.charAt(i+1).includesVowel){}
-      }
-    }
-  }
-  if (this.vowelCount === 2){
-    // if vowel first character
-
-    // if consonant first character
-
-    // if 2 vowels together
-    for (let i = 0; i < this.word.length; ++i){
-      for (let j = 0; j < vowels.length; ++j){
-        if (this.word.charAt(i) === vowels.charAt(j)){
-          for (let j = 0; j < vowels.length; ++j){
-            if(this.word.charAt(i+1) === vowels.charAt(j)){
-              this.syllable +=1;
+  countSyllables () {
+    let vowels = this.vowelCount;
+      for (let i = 0; i < this.word.length; ++i){
+        let letter = this.word.charAt(i);
+        let nextLetter = this.word.charAt(i+1);
+        let thirdLetter = this.word.charAt(i+2);
+        if(this.includesVowel(letter)){
+          if(this.includesVowel(nextLetter)){
+          	vowels -= 1;
+            ++i;
+            if(this.includesVowel(thirdLetter)){
+              vowels -= 1;
               ++i;
-            }
-            else {
-              this.syllable +=2;
             }
           }
         }
       }
-    }
-    return this.syllable;
-    // if 'e' is at end
-
-    // if 'ire' at end
-
-  }
-
-  if (this.vowelCount === 1){
-    this.syllable += 1;
+    this.syllable = vowels;
     return this.syllable;
   }
-};
+}
