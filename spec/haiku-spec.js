@@ -11,9 +11,9 @@ describe('Word', function() {
     oneword = new Word("go");
   });
 
-  it('checks how many vowels are in a word', function() {
-    expect(threeword.countVowels()).toEqual(3);
-    expect(twoword.countVowels()).toEqual(3);
-    expect(oneword.countVowels()).toEqual(1);
+  it('checks how many syllables are in a word', function() {
+    expect(threeword.countSyllables()).toEqual(3);
+    expect(twoword.countSyllables()).toEqual(2);
+    expect(oneword.countSyllables()).toEqual(1);
   });
 });

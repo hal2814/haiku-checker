@@ -19,7 +19,7 @@ export class Word{
     this.syllable = 0;
   }
 
-  // includesVowel () {
+  // isVowel () {
   //   if(this.word.includes('a')) {return true;}
   //   if(this.word.includes('e')) {return true;}
   //   if(this.word.includes('i')) {return true;}
@@ -28,8 +28,8 @@ export class Word{
   //   if(this.word.includes('y')) {return true;}
   // }
 
-  includesVowel () {
-    if(this.word.includes('a') || this.word.includes('e') || this.word.includes('i') || this.word.includes('o') || this.word.includes('u') || this.word.includes('y')) {
+  isVowel (letter) {
+    if(letter.includes('a') || letter.includes('e') || letter.includes('i') || letter.includes('o') || letter.includes('u') || letter.includes('y')) {
       return true;
     }else {
       return false;
@@ -37,16 +37,14 @@ export class Word{
   }
 
   countVowels () {
-    let original = this.word.length;
     let count = 0;
     for (let i = 0; i < this.word.length; ++i){
       let letter = this.word.charAt(i);
-      if (this.includesVowel(letter)){
+      if (this.isVowel(letter)){
           count +=1;
       }
     }
     this.vowelCount = count;
-    this.consonantCount = (original - count);
     return count;
   }
 
@@ -57,11 +55,11 @@ export class Word{
         let letter = this.word.charAt(i);
         let nextLetter = this.word.charAt(i+1);
         let thirdLetter = this.word.charAt(i+2);
-        if(this.includesVowel(letter)){
-          if(this.includesVowel(nextLetter)){
+        if(this.isVowel(letter)){
+          if(this.isVowel(nextLetter)){
           	vowels -= 1;
             ++i;
-            if(this.includesVowel(thirdLetter)){
+            if(this.isVowel(thirdLetter)){
               vowels -= 1;
               ++i;
             }
@@ -74,7 +72,7 @@ export class Word{
 }
 
 
-// includesVowel () {
+// isVowel () {
 //   if(word.includes('a')) {return true;}
 //   if(word.includes('e')) {return true;}
 //   if(word.includes('i')) {return true;}
@@ -88,7 +86,7 @@ export class Word{
 //   let count = 0;
 //   for (let i = 0; i < word.length; ++i){
 //     let letter = word.charAt(i);
-//     if (includesVowel(letter)){
+//     if (isVowel(letter)){
 //         count +=1;
 //     }
 //   }
@@ -104,11 +102,11 @@ export class Word{
 //       let letter = word.charAt(i);
 //       let nextLetter = word.charAt(i+1);
 //       let thirdLetter = word.charAt(i+2);
-//       if(includesVowel(letter)){
-//         if(includesVowel(nextLetter)){
+//       if(isVowel(letter)){
+//         if(isVowel(nextLetter)){
 //           vowels -= 1;
 //           ++i;
-//           if(includesVowel(thirdLetter)){
+//           if(isVowel(thirdLetter)){
 //             vowels -= 1;
 //             ++i;
 //           }
