@@ -50,6 +50,17 @@ var Word = exports.Word = function () {
       }
     }
   }, {
+    key: 'smallWordTwoVowels',
+    value: function smallWordTwoVowels() {
+      if (this.isVowel(this.word[this.word.length - 1]) === true && this.isVowel(this.word[0]) === true && this.word.length < 4) {
+        this.syllable -= 1;
+        return true;
+      }
+    }
+  }, {
+    key: 'twoVowelsFirst',
+    value: function twoVowelsFirst() {}
+  }, {
     key: 'doubleVowelExceptions',
     value: function doubleVowelExceptions(letter, nextletter, thirdLetter) {
       if (letter === 'i' && nextletter === 'o' && thirdLetter != 'u') {
@@ -57,6 +68,8 @@ var Word = exports.Word = function () {
       } else if (letter === 'e' && nextletter === 'o' && thirdLetter != 'u') {
         return 1;
       } else if (letter === 'i' && nextletter === 'a') {
+        return 1;
+      } else if (letter === 'y' && nextletter === 'e') {
         return 1;
       } else if (letter === 'y' && nextletter === 'i') {
         return 1;
@@ -68,7 +81,9 @@ var Word = exports.Word = function () {
     key: 'endsWithE',
     value: function endsWithE() {
       var word = this.word;
-      if (word[word.length - 1] === 'e' && word.length > 3) {
+      if (word[word.length - 1] === 'e' && word.length > 3 && word[word.length - 2] === 'r' && word[word.length - 3] === 'i') {
+        return false;
+      } else if (word[word.length - 1] === 'e' && word.length > 3 && word[word.length - 2] != 'l') {
         this.syllable -= 1;
         return true;
       } else {
@@ -102,6 +117,7 @@ var Word = exports.Word = function () {
       this.syllable = vowels;
       this.endsWithE();
       this.startsWithVowel();
+      this.smallWordTwoVowels();
       console.log("syllables =" + this.syllable);
       return this.syllable;
     }

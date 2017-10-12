@@ -34,8 +34,15 @@ export class Word {
     }
   }
 
+  smallWordTwoVowels () {
+    if(this.isVowel(this.word[this.word.length-1])=== true &&this.isVowel(this.word[0])=== true && this.word.length < 4){
+      this.syllable -= 1;
+      return true;
+    }
+  }
+
   twoVowelsFirst () {
-    
+
   }
 
   doubleVowelExceptions (letter,nextletter,thirdLetter) {
@@ -48,6 +55,9 @@ export class Word {
     else if(letter === 'i' && nextletter === 'a'){
       return 1;
     }
+    else if(letter === 'y' && nextletter === 'e'){
+      return 1;
+    }
     else if(letter === 'y' && nextletter === 'i'){
       return 1;
     }else{return 0;}
@@ -55,12 +65,12 @@ export class Word {
 
   endsWithE() {
     let word = this.word;
-    if((word[word.length-1] === 'e') && (word.length > 3)){
+    if((word[word.length-1] === 'e') && (word.length > 3) && (word[word.length-2] === 'r') && (word[word.length-3] === 'i')){
+      return false;
+    }else if((word[word.length-1] === 'e') && (word.length > 3) && (word[word.length-2] != 'l')){
       this.syllable -= 1;
       return true;
-    }else{
-      return false;
-    }
+    }else {return false;}
   }
 
   countSyllables () {
@@ -88,6 +98,7 @@ export class Word {
   this.syllable = vowels;
   this.endsWithE();
   this.startsWithVowel();
+  this.smallWordTwoVowels();
   console.log("syllables =" + this.syllable);
   return this.syllable;
   }
