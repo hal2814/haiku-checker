@@ -27,6 +27,32 @@ export class Word {
     return count;
   }
 
+  startsWithVowel () {
+    if(this.isVowel(this.word[0])=== true && this.word.length > 3){
+      this.syllable -= 1;
+      return true;
+    }
+  }
+
+  twoVowelsFirst () {
+    
+  }
+
+  doubleVowelExceptions (letter,nextletter,thirdLetter) {
+    if(letter === 'i' && nextletter === 'o' && thirdLetter != 'u'){
+      return 1;
+    }
+    else if(letter === 'e' && nextletter === 'o' && thirdLetter != 'u'){
+      return 1;
+    }
+    else if(letter === 'i' && nextletter === 'a'){
+      return 1;
+    }
+    else if(letter === 'y' && nextletter === 'i'){
+      return 1;
+    }else{return 0;}
+  }
+
   endsWithE() {
     let word = this.word;
     if((word[word.length-1] === 'e') && (word.length > 3)){
@@ -45,6 +71,9 @@ export class Word {
       let nextLetter = this.word.charAt(i+1);
       let thirdLetter = this.word.charAt(i+2);
       if(this.isVowel(letter)){
+        vowels += this.doubleVowelExceptions(letter,nextLetter,thirdLetter);
+        console.log("word =" + this.word);
+        console.log("vowel count = " + vowels);
         if(this.isVowel(nextLetter)){
         	vowels -= 1;
           ++i;
@@ -55,9 +84,11 @@ export class Word {
         }
       }
     }
-
+  console.log("final vowel count =" + vowels);
   this.syllable = vowels;
   this.endsWithE();
+  this.startsWithVowel();
+  console.log("syllables =" + this.syllable);
   return this.syllable;
   }
 }
@@ -89,27 +120,31 @@ export class Haiku {
     let line1Count = this.addSyllables(this.line1);
     let line2Count = this.addSyllables(this.line2);
     let line3Count = this.addSyllables(this.line3);
-    if(line1Count === 5){
-      count += 1;
-    }else if(line1Count < 5 ){
-      infoString = "line 1 needs more syllables! ";
-    }else if(line1Count > 5 ){
-      infoString = "line 1 has too many syllables! ";
-    }
-    if(line2Count === 7){
-      count += 1;
-    }else if(line2Count < 7 ){
-      infoString = "line 2 needs more syllables! " +infoString;
-    }else if(line2Count > 7 ){
-      infoString = "line 2 has too many syllables! " +infoString;
-    }
+
     if(line3Count === 5){
       count += 1;
     }else if(line3Count < 5 ){
-      infoString = "line 3 needs more syllables! " +infoString;
+      infoString = "Line 3 needs more syllables! You have only " +line3Count+ " syllables on Line 3. " +infoString;
     }else if(line3Count > 5 ){
-      infoString = "line 3 has too many syllables! " +infoString;
+      infoString = "Line 3 has too many syllables! You have " +line3Count+ " syllables on Line 3. " +infoString;
     }
+
+    if(line2Count === 7){
+      count += 1;
+    }else if(line2Count < 7 ){
+      infoString = "Line 2 needs more syllables! You have only " +line2Count+ " syllables on Line 2. "+infoString;
+    }else if(line2Count > 7 ){
+      infoString = "Line 2 has too many syllables! You have " +line2Count+ " syllables on Line 2. " +infoString;
+    }
+
+    if(line1Count === 5){
+      count += 1;
+    }else if(line1Count < 5 ){
+      infoString = "Line 1 needs more syllables! You have only " +line1Count+ " syllables on Line 1. " +infoString;
+    }else if(line1Count > 5 ){
+      infoString = "Line 1 has too many syllables! You have " +line1Count+ " syllables on Line 1. " +infoString;
+    }
+
     if(count === 3){
       return "valid";
     }else{

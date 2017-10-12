@@ -8185,9 +8185,19 @@ a.text-dark:focus, a.text-dark:hover {
 /*# sourceMappingURL=bootstrap.css.map */
 body {
   background-image: url("http://wallup.net/wp-content/uploads/2017/03/27/409812-Overwatch-Hanamura_Overwatch.jpg");
+
+  background-size: 150%;
 }
 
 
 .haikuFont {
   font-family: 'Permanent Marker', cursive;
+}
+
+.pageFont {
+  font-family: 'Sedgwick Ave', cursive;
+}
+
+.centerHaiku {
+  text-align: center;
 }

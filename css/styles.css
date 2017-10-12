@@ -12,3 +12,7 @@ body {
 .pageFont {
   font-family: 'Sedgwick Ave', cursive;
 }
+
+.centerHaiku {
+  text-align: center;
+}

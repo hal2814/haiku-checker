@@ -12,9 +12,10 @@ $(document).ready(function() {
     $('#output3').text(newHaiku.line3);
     let check = newHaiku.isHaiku()
     if(check === "valid"){
-      $('#validity').text("This is a valid haiku");
+      $('#validity2').text("This is a valid haiku");
     }else{
-      $('#validity').text("This is NOT a valid haiku because: " + check);
+      $('#validity1').text("This is NOT a valid haiku because: ");
+      $('#validity2').text(check);
     }
   });
 });
