@@ -28,7 +28,10 @@ export class Word {
   }
 
   startsWithVowel () {
-    if(this.isVowel(this.word[0])=== true && this.word.length > 3){
+    if(this.isVowel(this.word[0])=== true && this.isVowel(this.word[1])=== true && this.word.length > 3){
+      return false;
+    }
+    else if(this.isVowel(this.word[0])=== true && this.word.length > 3){
       this.syllable -= 1;
       return true;
     }

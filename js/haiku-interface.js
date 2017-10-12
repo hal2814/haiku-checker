@@ -12,7 +12,8 @@ $(document).ready(function() {
     $('#output3').text(newHaiku.line3);
     let check = newHaiku.isHaiku()
     if(check === "valid"){
-      $('#validity2').text("This is a valid haiku");
+      $('#validity1').text("");
+      $('#validity2').text("This is a valid haiku.");
     }else{
       $('#validity1').text("This is NOT a valid haiku because: ");
       $('#validity2').text(check);

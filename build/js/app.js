@@ -44,7 +44,9 @@ var Word = exports.Word = function () {
   }, {
     key: 'startsWithVowel',
     value: function startsWithVowel() {
-      if (this.isVowel(this.word[0]) === true && this.word.length > 3) {
+      if (this.isVowel(this.word[0]) === true && this.isVowel(this.word[1]) === true && this.word.length > 3) {
+        return false;
+      } else if (this.isVowel(this.word[0]) === true && this.word.length > 3) {
         this.syllable -= 1;
         return true;
       }
@@ -210,7 +212,8 @@ $(document).ready(function () {
     $('#output3').text(newHaiku.line3);
     var check = newHaiku.isHaiku();
     if (check === "valid") {
-      $('#validity2').text("This is a valid haiku");
+      $('#validity1').text("");
+      $('#validity2').text("This is a valid haiku.");
     } else {
       $('#validity1').text("This is NOT a valid haiku because: ");
       $('#validity2').text(check);
