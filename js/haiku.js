@@ -1,32 +1,11 @@
-export class Haiku{
+export class Word {
 
-  constructor(line1, line2, line3){
-    this.line1 = line1;
-    this.lineCount1 = 0;
-    this.line2 = line2;
-    this.lineCount2 = 0;
-    this.line3 = line3;
-    this.lineCount3 = 0;
-  }
-}
-
-export class Word{
-
-  constructor(word){
+  constructor(word) {
     this.word = word;
     this.vowelCount = 0;
     this.consonantCount = 0;
     this.syllable = 0;
   }
-
-  // isVowel () {
-  //   if(this.word.includes('a')) {return true;}
-  //   if(this.word.includes('e')) {return true;}
-  //   if(this.word.includes('i')) {return true;}
-  //   if(this.word.includes('o')) {return true;}
-  //   if(this.word.includes('u')) {return true;}
-  //   if(this.word.includes('y')) {return true;}
-  // }
 
   isVowel (letter) {
     if(letter.includes('a') || letter.includes('e') || letter.includes('i') || letter.includes('o') || letter.includes('u') || letter.includes('y')) {
@@ -71,48 +50,58 @@ export class Word{
   }
 }
 
+export class Haiku {
 
-// isVowel () {
-//   if(word.includes('a')) {return true;}
-//   if(word.includes('e')) {return true;}
-//   if(word.includes('i')) {return true;}
-//   if(word.includes('o')) {return true;}
-//   if(word.includes('u')) {return true;}
-//   if(word.includes('y')) {return true;}
-// }
-//
-// countVowels () {
-//   original = word.length;
-//   let count = 0;
-//   for (let i = 0; i < word.length; ++i){
-//     let letter = word.charAt(i);
-//     if (isVowel(letter)){
-//         count +=1;
-//     }
-//   }
-//   vowelCount = count;
-//   consonantCount = (original - count);
-//   return count;
-// }
-//
-// countSyllables () {
-//   countVowels();
-//   let vowels = vowelCount;
-//     for (let i = 0; i < word.length; ++i){
-//       let letter = word.charAt(i);
-//       let nextLetter = word.charAt(i+1);
-//       let thirdLetter = word.charAt(i+2);
-//       if(isVowel(letter)){
-//         if(isVowel(nextLetter)){
-//           vowels -= 1;
-//           ++i;
-//           if(isVowel(thirdLetter)){
-//             vowels -= 1;
-//             ++i;
-//           }
-//         }
-//       }
-//     }
-//   syllable = vowels;
-//   return syllable;
-// }
+  constructor(line1, line2, line3){
+    this.line1 = line1;
+    this.lineCount1 = 0;
+    this.line2 = line2;
+    this.lineCount2 = 0;
+    this.line3 = line3;
+    this.lineCount3 = 0;
+  }
+
+  addSyllables(line) {
+    let count = 0;
+    let lineArray = line.split(" ");
+    for (let i = 0; i < lineArray.length; ++i){
+      let word = new Word(lineArray[i]);
+      count +=word.countSyllables();
+    }
+  return count;
+  }
+
+  isHaiku() {
+    let count = 0;
+    let infoString = "";
+    let line1Count = this.addSyllables(this.line1);
+    let line2Count = this.addSyllables(this.line2);
+    let line3Count = this.addSyllables(this.line3);
+    if(line1Count === 5){
+      count += 1;
+    }else if(line1Count < 5 ){
+      infoString = "line 1 needs more syllables! ";
+    }else if(line1Count > 5 ){
+      infoString = "line 1 has too many syllables! ";
+    }
+    if(line2Count === 7){
+      count += 1;
+    }else if(line2Count < 7 ){
+      infoString = "line 2 needs more syllables! " +infoString;
+    }else if(line2Count > 7 ){
+      infoString = "line 2 has too many syllables! " +infoString;
+    }
+    if(line3Count === 5){
+      count += 1;
+    }else if(line3Count < 5 ){
+      infoString = "line 3 needs more syllables! " +infoString;
+    }else if(line3Count > 5 ){
+      infoString = "line 3 has too many syllables! " +infoString;
+    }
+    if(count === 3){
+      return "valid";
+    }else{
+      return infoString;
+    }
+  }
+}
