@@ -1,8 +1,14 @@
 body {
-  background-image: url("https://i.ytimg.com/vi/LEKgHLxcFxM/maxresdefault.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: block;
-  position: absolute;
-  color: white;
+  background-image: url("http://wallup.net/wp-content/uploads/2017/03/27/409812-Overwatch-Hanamura_Overwatch.jpg");
+
+  background-size: 150%;
+}
+
+
+.haikuFont {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.pageFont {
+  font-family: 'Sedgwick Ave', cursive;
 }
