@@ -72,7 +72,7 @@ gulp.task('jsBower', function () {
 });
 
 gulp.task('cssBower', function () {
-  return gulp.src(lib.ext('css').files)
+  return gulp.src((lib.ext('css').files).concat(['css/*.css']))
     .pipe(concat('vendor.css'))
     .pipe(gulp.dest('./build/css'));
 });

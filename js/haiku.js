@@ -27,26 +27,38 @@ export class Word {
     return count;
   }
 
+  endsWithE() {
+    let word = this.word;
+    if((word[word.length-1] === 'e') && (word.length > 3)){
+      this.syllable -= 1;
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   countSyllables () {
     this.countVowels();
     let vowels = this.vowelCount;
-      for (let i = 0; i < this.word.length; ++i){
-        let letter = this.word.charAt(i);
-        let nextLetter = this.word.charAt(i+1);
-        let thirdLetter = this.word.charAt(i+2);
-        if(this.isVowel(letter)){
-          if(this.isVowel(nextLetter)){
-          	vowels -= 1;
+    for (let i = 0; i < this.word.length; ++i){
+      let letter = this.word.charAt(i);
+      let nextLetter = this.word.charAt(i+1);
+      let thirdLetter = this.word.charAt(i+2);
+      if(this.isVowel(letter)){
+        if(this.isVowel(nextLetter)){
+        	vowels -= 1;
+          ++i;
+          if(this.isVowel(thirdLetter)){
+            vowels -= 1;
             ++i;
-            if(this.isVowel(thirdLetter)){
-              vowels -= 1;
-              ++i;
-            }
           }
         }
       }
-    this.syllable = vowels;
-    return this.syllable;
+    }
+
+  this.syllable = vowels;
+  this.endsWithE();
+  return this.syllable;
   }
 }
 

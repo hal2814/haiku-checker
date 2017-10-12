@@ -42,6 +42,17 @@ var Word = exports.Word = function () {
       return count;
     }
   }, {
+    key: 'endsWithE',
+    value: function endsWithE() {
+      var word = this.word;
+      if (word[word.length - 1] === 'e' && word.length > 3) {
+        this.syllable -= 1;
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }, {
     key: 'countSyllables',
     value: function countSyllables() {
       this.countVowels();
@@ -61,7 +72,9 @@ var Word = exports.Word = function () {
           }
         }
       }
+
       this.syllable = vowels;
+      this.endsWithE();
       return this.syllable;
     }
   }]);

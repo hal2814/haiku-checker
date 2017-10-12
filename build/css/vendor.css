@@ -6755,3 +6755,12 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+body {
+  background-image: url("https://i.ytimg.com/vi/LEKgHLxcFxM/maxresdefault.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  position: absolute;
+  color: white;
+}
