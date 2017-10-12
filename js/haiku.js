@@ -107,11 +107,11 @@ export class Word {
 export class Haiku {
 
   constructor(line1, line2, line3){
-    this.line1 = line1;
+    this.line1 = line1.toLowerCase();
     this.lineCount1 = 0;
-    this.line2 = line2;
+    this.line2 = line2.toLowerCase();
     this.lineCount2 = 0;
-    this.line3 = line3;
+    this.line3 = line3.toLowerCase();
     this.lineCount3 = 0;
   }
 
