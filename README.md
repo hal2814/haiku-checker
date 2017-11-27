@@ -24,3 +24,5 @@ clone this repository, navigate into the directory, then open the index file
 There are a large number of edge cases to determine the amount of syllables in a word. not all edge cases are accounted for. Feel free to pull and add more
 
 ### technology used: Javascript, npm, bower
+
+copyright Nate McGregor, Karla Buckner 2017
